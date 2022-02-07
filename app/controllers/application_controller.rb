@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::API
-    before_action :authenticate_user!
+    before_action :verify_jwt_token
 end
