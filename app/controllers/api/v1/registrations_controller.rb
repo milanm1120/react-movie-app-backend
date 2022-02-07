@@ -30,7 +30,7 @@ class Api::V1::RegistrationsController < ApplicationController
   
   
     def sign_up_params
-      params.require(:user).permit(:email, :password, :first_name, :last_name)
+      params.require(:user).permit(:email, :password, :name)
     end
   
   end
