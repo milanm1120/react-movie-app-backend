@@ -6,7 +6,7 @@ class Api::V1::RegistrationsController < ApplicationController
       if @user.save && @user.valid?
         head(:ok)
       else
-        render json: { error: 'invalid_credentials' }, status: :unauthorized
+        render json: { error: @user.errors }, status: 422
       end
     end
   
