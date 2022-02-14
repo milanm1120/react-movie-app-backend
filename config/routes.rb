@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         resource :session, only: [:create, :show, :destroy] do
           put 'forgot_password', to: 'sessions#forgot_password'
         end
-        devise_for :users, controllers: { registrations: "api/v1/registrations", sessions: "api/v1/sessions", omniauth_callbacks: "api/v1/users/omniauth_callbacks" }
+        devise_for :users, controllers: { registrations: "api/v1/registration", sessions: "api/v1/sessions", omniauth_callbacks: "api/v1/users/omniauth_callbacks" }
         resource :registration, only: [:create, :update, :destroy]
         resource :sessions, only: [:create, :show, :forgot_password]
     

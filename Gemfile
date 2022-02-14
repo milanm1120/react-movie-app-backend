@@ -19,6 +19,8 @@ gem 'bcrypt', '~> 3.1.7'
 #For User Authentication
 gem 'devise'
 
+gem 'pry'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
