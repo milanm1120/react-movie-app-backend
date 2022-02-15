@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         resources :reviews
         resources :ratings
         resources :comments
+        resources :movies
       end
     end
   end

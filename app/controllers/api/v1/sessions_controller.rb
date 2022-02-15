@@ -8,9 +8,9 @@ class Api::V1::SessionsController < ApplicationController
      end
  
      def create
-      p "1111=#{params}" 
+      # p "1111=#{params}" 
        @user = User.where(email: params[:user][:email]).first
-       p "2222=#{(params[:user][:email])}"
+      #  p "2222=#{(params[:user][:email])}"
        if @user&.valid_password?(params[:user][:password])
          jwt = WebToken.encode(@user)
          render json:  { token: jwt, user: Api::V1::UserSerializer.new(@user).as_json}, status: :created
