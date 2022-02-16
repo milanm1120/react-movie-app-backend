@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_160331) do
+ActiveRecord::Schema.define(version: 2022_02_16_173304) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer "review_id", null: false
+    t.integer "movie_id", null: false
     t.integer "user_id", null: false
     t.text "contents"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["movie_id"], name: "index_comments_on_movie_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_160331) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "reviews"
+  add_foreign_key "comments", "movies"
   add_foreign_key "comments", "users"
   add_foreign_key "ratings", "users"
 end
