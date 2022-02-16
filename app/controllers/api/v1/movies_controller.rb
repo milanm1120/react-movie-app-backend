@@ -1,16 +1,22 @@
 class Api::V1::MoviesController < ApplicationController
-  # before_action :set_movie, only: [:show, :update, :destroy]
+  before_action :set_movie, only: [:show, :update, :destroy]
 
   # GET /movies
   def index
-    @movies = Movie.all
+    if params[:query].present?
+      p params[:query]
+      @movies= Movie.where("title LIKE ?", "%#{params[:query]}%")
+    else
+      @movies = Movie.all
+    end
+    
     p @movies
     render json: @movies.to_json
   end
 
   # GET /movies/1
   def show
-    render json: @movie
+    render json: @movie.to_json
   end
 
   # POST /movies
