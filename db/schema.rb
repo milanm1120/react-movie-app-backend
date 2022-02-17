@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_16_173304) do
+ActiveRecord::Schema.define(version: 2022_02_17_162412) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "movie_id", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 2022_02_16_173304) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["movie_id"], name: "index_comments_on_movie_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "movie_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_favorites_on_movie_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "movies", force: :cascade do |t|
@@ -61,5 +70,7 @@ ActiveRecord::Schema.define(version: 2022_02_16_173304) do
 
   add_foreign_key "comments", "movies"
   add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "movies"
+  add_foreign_key "favorites", "users"
   add_foreign_key "ratings", "users"
 end

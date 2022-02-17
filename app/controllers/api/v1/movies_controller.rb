@@ -16,7 +16,8 @@ class Api::V1::MoviesController < ApplicationController
 
   # GET /movies/1
   def show
-    render json: @movie.to_json
+    all_comment = @movie.comments     #getting all the comments for this movie from the DB
+    render json: @movie.to_json(include: [:comments])
   end
 
   # POST /movies
