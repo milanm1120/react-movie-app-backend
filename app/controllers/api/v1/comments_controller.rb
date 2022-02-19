@@ -37,6 +37,7 @@ class Api::V1::CommentsController < ApplicationController
   # DELETE /comments/1
   def destroy
     @comment.destroy
+    render json: {success: true}
   end
 
   private

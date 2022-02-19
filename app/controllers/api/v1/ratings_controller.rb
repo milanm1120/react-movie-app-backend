@@ -1,24 +1,25 @@
 class Api::V1::RatingsController < ApplicationController
-  before_action :set_rating, only: [:show, :update, :destroy]
+  before_action :set_rating, only: [:update, :destroy]
 
   # GET /ratings
   def index
-    @ratings = Rating.all
+    @ratings = Rating.last
 
     render json: @ratings
   end
 
   # GET /ratings/1
   def show
+    @rating = Rating.where(user_id: params[:user_id], movie_id: params[:movie_id]).first
     render json: @rating
   end
 
   # POST /ratings
   def create
-    @rating = Rating.new(rating_params)
+    @rating = Rating.new(movie_id: params[:movie_id], user_id: params[:user_id], rating: params[:rating])
 
     if @rating.save
-      render json: @rating, status: :created, location: @rating
+      render json: @rating, status: :created
     else
       render json: @rating.errors, status: :unprocessable_entity
     end

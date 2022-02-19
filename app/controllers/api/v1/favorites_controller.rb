@@ -1,5 +1,5 @@
 class Api::V1::FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :update, :destroy]
+  before_action :set_favorite, only: [:show, :update]
 
   # GET /favorites
   def index
@@ -15,10 +15,10 @@ class Api::V1::FavoritesController < ApplicationController
 
   # POST /favorites
   def create
-    @favorite = Favorite.new(favorite_params)
+    @favorite = Favorite.new(user_id: params[:user_id], movie_id: params[:movie_id])
 
     if @favorite.save
-      render json: @favorite, status: :created, location: @favorite
+      render json: @favorite, status: :created 
     else
       render json: @favorite.errors, status: :unprocessable_entity
     end
@@ -35,7 +35,8 @@ class Api::V1::FavoritesController < ApplicationController
 
   # DELETE /favorites/1
   def destroy
-    @favorite.destroy
+    Favorite.where(movie_id: params[:id]).map{|x| x.destroy}
+    render json: {success: true}
   end
 
   private

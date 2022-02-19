@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :favorites
+  
   defaults format: :json do
     namespace :api do
       namespace :v1 do
@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         resources :ratings
         resources :comments
         resources :movies
+        resources :favorites
       end
     end
   end
