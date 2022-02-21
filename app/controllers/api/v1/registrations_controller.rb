@@ -4,7 +4,7 @@ class Api::V1::RegistrationsController < ApplicationController
     def create
       @user = User.new(sign_up_params)
       if @user.save && @user.valid?
-        head(:ok)
+        render json: { success: true}
       else
         render json: { error: @user.errors }, status: 422
       end

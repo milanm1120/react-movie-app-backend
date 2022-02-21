@@ -16,7 +16,12 @@ class Api::V1::RatingsController < ApplicationController
 
   # POST /ratings
   def create
-    @rating = Rating.new(movie_id: params[:movie_id], user_id: params[:user_id], rating: params[:rating])
+    @rating = Rating.where(movie_id: params[:movie_id], user_id: params[:user_id]).last
+    if @rating 
+      @rating.update(rating: params[:rating])
+    else
+      @rating = Rating.new(movie_id: params[:movie_id], user_id: params[:user_id], rating: params[:rating])
+    end
 
     if @rating.save
       render json: @rating, status: :created

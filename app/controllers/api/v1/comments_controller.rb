@@ -19,7 +19,7 @@ class Api::V1::CommentsController < ApplicationController
     @comment = Comment.new(contents: params[:contents], user_id: params[:user_id], movie_id: params[:movie_id])
 
     if @comment.save
-      render json: @comment, status: :created
+      render json: @comment.to_json(include: [:user]), status: :created
     else
       render json: @comment.errors, status: :unprocessable_entity
     end

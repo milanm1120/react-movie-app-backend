@@ -18,8 +18,6 @@ class Api::V1::MoviesController < ApplicationController
   def show
     all_comment = @movie.comments     #getting all the comments for this movie from the DB
     render json: @movie.to_json(include: {comments: {include: :user}})
-    
-    # :include => [:bs => [:include=>[:c]]
   end
 
   def get_favorite
